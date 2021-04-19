@@ -19,32 +19,32 @@ namespace ToysRUs2.Persistency.TestData
                 {
                     new Clothes
                     {
-                        Colour = colours[0],
-                        Description = "This dress is very red and pretty",
+                        Colour = colours,
+                        Description = "This dress is very pretty",
                         Name = "Pretty red dress",
                         Price = 399.95,
                         Sex = sexes[1],
-                        Size = sizes[3],
+                        Size = sizes,
                         Type = types[0]
                     },
                     new Clothes
                     {
-                        Colour = colours[2],
-                        Description = "Purple t-shirt without any motives",
+                        Colour = colours,
+                        Description = "T-shirt without any motives",
                         Name = "T-shirt",
                         Price = 1299.95,
                         Sex = sexes[0],
-                        Size = sizes[6],
+                        Size = sizes,
                         Type = types[2]
                     },
                     new Clothes
                     {
-                        Colour = colours[1],
-                        Description = "Blue dress shirt for when you want to get laid",
+                        Colour = colours,
+                        Description = "Dress shirt for when you want to get laid",
                         Name = "Dress shirt for men",
                         Price = 800,
                         Sex = sexes[0],
-                        Size = sizes[5],
+                        Size = sizes,
                         Type = types[4]
                     },
 
