@@ -19,36 +19,38 @@ namespace ToysRUs2.Persistency.TestData
                 {
                     new Clothes
                     {
-                        Colour = colours,
+                        Colours = colours,
                         Description = "This dress is very pretty",
                         Name = "Pretty red dress",
                         Price = 399.95,
                         Sex = sexes[1],
-                        Size = sizes,
+                        Sizes = sizes,
                         Type = types[0]
                     },
                     new Clothes
                     {
-                        Colour = colours,
+                        Colours = colours,
                         Description = "T-shirt without any motives",
                         Name = "T-shirt",
                         Price = 1299.95,
                         Sex = sexes[0],
-                        Size = sizes,
+                        Sizes = sizes,
                         Type = types[2]
                     },
                     new Clothes
                     {
-                        Colour = colours,
+                        Colours = colours,
                         Description = "Dress shirt for when you want to get laid",
                         Name = "Dress shirt for men",
                         Price = 800,
                         Sex = sexes[0],
-                        Size = sizes,
+                        Sizes = sizes,
                         Type = types[4]
                     },
 
                 };
+                
+                clothesDatabaseContext.ClothingSet.AddRange(clothesList);
             }
         }
     }

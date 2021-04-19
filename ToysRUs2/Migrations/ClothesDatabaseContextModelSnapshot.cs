@@ -22,9 +22,6 @@ namespace ToysRUs2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ColourId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
@@ -37,19 +34,12 @@ namespace ToysRUs2.Migrations
                     b.Property<int?>("SexId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("TypeId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColourId");
-
                     b.HasIndex("SexId");
-
-                    b.HasIndex("SizeId");
 
                     b.HasIndex("TypeId");
 
@@ -84,10 +74,15 @@ namespace ToysRUs2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ClothesId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClothesId");
 
                     b.ToTable("Colours");
                 });
@@ -112,10 +107,15 @@ namespace ToysRUs2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ClothesId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClothesId");
 
                     b.ToTable("Sizes");
                 });
@@ -136,27 +136,15 @@ namespace ToysRUs2.Migrations
 
             modelBuilder.Entity("ToysRUs2.Models.Clothes", b =>
                 {
-                    b.HasOne("ToysRUs2.Models.Colour", "Colour")
-                        .WithMany()
-                        .HasForeignKey("ColourId");
-
                     b.HasOne("ToysRUs2.Models.Sex", "Sex")
                         .WithMany()
                         .HasForeignKey("SexId");
-
-                    b.HasOne("ToysRUs2.Models.Size", "Size")
-                        .WithMany()
-                        .HasForeignKey("SizeId");
 
                     b.HasOne("ToysRUs2.Models.Type", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId");
 
-                    b.Navigation("Colour");
-
                     b.Navigation("Sex");
-
-                    b.Navigation("Size");
 
                     b.Navigation("Type");
                 });
@@ -168,9 +156,27 @@ namespace ToysRUs2.Migrations
                         .HasForeignKey("ClothesId");
                 });
 
+            modelBuilder.Entity("ToysRUs2.Models.Colour", b =>
+                {
+                    b.HasOne("ToysRUs2.Models.Clothes", null)
+                        .WithMany("Colours")
+                        .HasForeignKey("ClothesId");
+                });
+
+            modelBuilder.Entity("ToysRUs2.Models.Size", b =>
+                {
+                    b.HasOne("ToysRUs2.Models.Clothes", null)
+                        .WithMany("Sizes")
+                        .HasForeignKey("ClothesId");
+                });
+
             modelBuilder.Entity("ToysRUs2.Models.Clothes", b =>
                 {
+                    b.Navigation("Colours");
+
                     b.Navigation("Images");
+
+                    b.Navigation("Sizes");
                 });
 #pragma warning restore 612, 618
         }

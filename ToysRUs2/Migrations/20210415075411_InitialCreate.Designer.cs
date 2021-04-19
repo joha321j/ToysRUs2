@@ -17,7 +17,7 @@ namespace ToysRUs2.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.0-preview.3.21201.2");
 
-            modelBuilder.Entity("ToysRUs2.Models.Colour", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Colours", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace ToysRUs2.Migrations
                     b.ToTable("Sexes");
                 });
 
-            modelBuilder.Entity("ToysRUs2.Models.Size", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Sizes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -9,8 +9,8 @@ using ToysRUs2.Persistency;
 namespace ToysRUs2.Migrations
 {
     [DbContext(typeof(ClothesDatabaseContext))]
-    [Migration("20210415080052_ClothesAndImages")]
-    partial class ClothesAndImages
+    [Migration("20210419075015_Multiplicities")]
+    partial class Multiplicities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,9 +22,6 @@ namespace ToysRUs2.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ColourId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
@@ -39,19 +36,12 @@ namespace ToysRUs2.Migrations
                     b.Property<int?>("SexId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SizeId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("TypeId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColourId");
-
                     b.HasIndex("SexId");
-
-                    b.HasIndex("SizeId");
 
                     b.HasIndex("TypeId");
 
@@ -80,16 +70,21 @@ namespace ToysRUs2.Migrations
                     b.ToTable("ClothingImages");
                 });
 
-            modelBuilder.Entity("ToysRUs2.Models.Colours", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Colour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClothesId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClothesId");
 
                     b.ToTable("Colours");
                 });
@@ -108,16 +103,21 @@ namespace ToysRUs2.Migrations
                     b.ToTable("Sexes");
                 });
 
-            modelBuilder.Entity("ToysRUs2.Models.Sizes", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClothesId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Value")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClothesId");
 
                     b.ToTable("Sizes");
                 });
@@ -138,27 +138,15 @@ namespace ToysRUs2.Migrations
 
             modelBuilder.Entity("ToysRUs2.Models.Clothes", b =>
                 {
-                    b.HasOne("ToysRUs2.Models.Colours", "Colours")
-                        .WithMany()
-                        .HasForeignKey("ColourId");
-
                     b.HasOne("ToysRUs2.Models.Sex", "Sex")
                         .WithMany()
                         .HasForeignKey("SexId");
-
-                    b.HasOne("ToysRUs2.Models.Sizes", "Sizes")
-                        .WithMany()
-                        .HasForeignKey("SizeId");
 
                     b.HasOne("ToysRUs2.Models.Type", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId");
 
-                    b.Navigation("Colours");
-
                     b.Navigation("Sex");
-
-                    b.Navigation("Sizes");
 
                     b.Navigation("Type");
                 });
@@ -170,9 +158,27 @@ namespace ToysRUs2.Migrations
                         .HasForeignKey("ClothesId");
                 });
 
+            modelBuilder.Entity("ToysRUs2.Models.Colour", b =>
+                {
+                    b.HasOne("ToysRUs2.Models.Clothes", null)
+                        .WithMany("Colours")
+                        .HasForeignKey("ClothesId");
+                });
+
+            modelBuilder.Entity("ToysRUs2.Models.Size", b =>
+                {
+                    b.HasOne("ToysRUs2.Models.Clothes", null)
+                        .WithMany("Sizes")
+                        .HasForeignKey("ClothesId");
+                });
+
             modelBuilder.Entity("ToysRUs2.Models.Clothes", b =>
                 {
+                    b.Navigation("Colours");
+
                     b.Navigation("Images");
+
+                    b.Navigation("Sizes");
                 });
 #pragma warning restore 612, 618
         }

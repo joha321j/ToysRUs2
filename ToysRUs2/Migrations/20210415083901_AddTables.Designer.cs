@@ -80,7 +80,7 @@ namespace ToysRUs2.Migrations
                     b.ToTable("ClothingImages");
                 });
 
-            modelBuilder.Entity("ToysRUs2.Models.Colour", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Colours", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace ToysRUs2.Migrations
                     b.ToTable("Sexes");
                 });
 
-            modelBuilder.Entity("ToysRUs2.Models.Size", b =>
+            modelBuilder.Entity("ToysRUs2.Models.Sizes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +138,7 @@ namespace ToysRUs2.Migrations
 
             modelBuilder.Entity("ToysRUs2.Models.Clothes", b =>
                 {
-                    b.HasOne("ToysRUs2.Models.Colour", "Colour")
+                    b.HasOne("ToysRUs2.Models.Colours", "Colours")
                         .WithMany()
                         .HasForeignKey("ColourId");
 
@@ -146,7 +146,7 @@ namespace ToysRUs2.Migrations
                         .WithMany()
                         .HasForeignKey("SexId");
 
-                    b.HasOne("ToysRUs2.Models.Size", "Size")
+                    b.HasOne("ToysRUs2.Models.Sizes", "Sizes")
                         .WithMany()
                         .HasForeignKey("SizeId");
 
@@ -154,11 +154,11 @@ namespace ToysRUs2.Migrations
                         .WithMany()
                         .HasForeignKey("TypeId");
 
-                    b.Navigation("Colour");
+                    b.Navigation("Colours");
 
                     b.Navigation("Sex");
 
-                    b.Navigation("Size");
+                    b.Navigation("Sizes");
 
                     b.Navigation("Type");
                 });
